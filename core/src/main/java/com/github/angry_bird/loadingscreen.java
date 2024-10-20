@@ -43,7 +43,7 @@ public class loadingscreen implements com.badlogic.gdx.Screen {
 
         // Simulate loading time (wait for 3 seconds)
         loadingTime += delta;
-        if (loadingTime > 3.0f) {
+        if (loadingTime > 1.0f) {
             game.setScreen(new HomeScreen(game)); // Transition to the home screen after 3 seconds
         }
     }

@@ -18,11 +18,10 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
     private OrthographicCamera camera;
     private SpriteBatch batch;
     private Sprite background;
-    private Sprite playicon;
-    private Sprite settingsicon;
+    private Sprite playicon, settingsicon, exiticon;
     private Sprite title;
     private Rectangle playButton;
-    private Circle settingsbutton;
+    private Circle settingsbutton, exitbutton;
     private Pixmap cursorPixmap;
     private com.badlogic.gdx.graphics.Cursor cursor;
 
@@ -32,20 +31,23 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
 
     @Override
     public void show() {
-        //camera = new OrthographicCamera();
-        //camera.setToOrtho(false, 1024, 768); // Match the window size
-        camera=new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        // camera = new OrthographicCamera();
+        // camera.setToOrtho(false, 1024, 768); // Match the window size
+        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch = new SpriteBatch();
         background = new Sprite(new Texture("backdrop.png"));
-        playicon=new Sprite(new Texture("playicon.png"));
-        settingsicon=new Sprite(new Texture("settingsicon.png"));
-        title=new Sprite(new Texture("title.png"));
-        //title.setSize();
-        //background.setSize(1024, 768);
+        playicon = new Sprite(new Texture("playicon.png"));
+        settingsicon = new Sprite(new Texture("settingsicon.png"));
+        exiticon = new Sprite(new Texture("exitbutton.png"));
+        title = new Sprite(new Texture("title.png"));
+        // title.setSize();
+        // background.setSize(1024, 768);
 
-        // Adjust the position and size to match your play button's location on the image
-        playButton = new Rectangle(-170,-130,345,170);
-        settingsbutton = new Circle(-720,-380,50);
+        // Adjust the position and size to match your play button's location on the
+        // image
+        playButton = new Rectangle(-170, -130, 345, 170);
+        settingsbutton = new Circle(-720, -380, 50);
+        exitbutton = new Circle(720, -380, 45);
 
         // Load the custom cursor texture
         cursorPixmap = new Pixmap(Gdx.files.internal("cursor.png"));
@@ -58,12 +60,13 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //batch.setProjectionMatrix(camera.combined);
+        // batch.setProjectionMatrix(camera.combined);
         batch.begin();
         background.draw(batch);
-        batch.draw(playicon,620,330);
-        batch.draw(settingsicon,30,10);
-        batch.draw(title,400,700);
+        batch.draw(playicon, 620, 330);
+        batch.draw(settingsicon, 30, 10);
+        batch.draw(title, 400, 700);
+        batch.draw(exiticon, 1470, 10);
         batch.end();
 
         // Get the mouse position in world coordinates
@@ -74,12 +77,19 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
         if (playButton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
-                game.setScreen(new SelectLevel(game)); // Ensure PlayScreen is properly implemented
+                game.setScreen(new SelectLevel(game, this)); // Ensure PlayScreen is properly implemented
             }
         } else if (settingsbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
                 game.setScreen(new Settings(game)); // Ensure PlayScreen is properly implemented
+            }
+        } else if (exitbutton.contains(mousePos.x, mousePos.y)) {
+            Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
+            if (Gdx.input.isTouched()) {
+                // game.setScreen(new Settings(game)); // Ensure PlayScreen is properly
+                // implemented
+                Gdx.app.exit();
             }
         } else {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
@@ -88,17 +98,20 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
 
     @Override
     public void resize(int width, int height) {
-        //camera.setToOrtho(false, width, height);
+        // camera.setToOrtho(false, width, height);
     }
 
     @Override
-    public void pause() {}
+    public void pause() {
+    }
 
     @Override
-    public void resume() {}
+    public void resume() {
+    }
 
     @Override
-    public void hide() {}
+    public void hide() {
+    }
 
     @Override
     public void dispose() {
@@ -107,6 +120,7 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
         playicon.getTexture().dispose();
         settingsicon.getTexture().dispose();
         title.getTexture().dispose();
+        exiticon.getTexture().dispose();
         cursorPixmap.dispose();
         if (cursor != null) {
             cursor.dispose();
