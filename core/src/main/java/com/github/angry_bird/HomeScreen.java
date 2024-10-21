@@ -35,7 +35,7 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
         // camera.setToOrtho(false, 1024, 768); // Match the window size
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch = new SpriteBatch();
-        background = new Sprite(new Texture("backdrop.png"));
+        background = new Sprite(new Texture("b1.png"));
         playicon = new Sprite(new Texture("playicon.png"));
         settingsicon = new Sprite(new Texture("settingsicon.png"));
         exiticon = new Sprite(new Texture("exitbutton.png"));

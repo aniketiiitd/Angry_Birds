@@ -28,7 +28,7 @@ public class SelectLevel implements com.badlogic.gdx.Screen {
 
     public SelectLevel(Game game, HomeScreen home) {
         this.game = game;
-        this.home=home;
+        this.home = home;
     }
 
     @Override
@@ -36,9 +36,8 @@ public class SelectLevel implements com.badlogic.gdx.Screen {
         // Initialize camera and viewport
         Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch = new SpriteBatch();
-        background = new Sprite(new Texture("backdrop.png"));
+        background = new Sprite(new Texture("b2.png"));
         title = new Sprite(new Texture("selectlevel.png"));
         levels = new Sprite(new Texture("levels.png"));
         backicon = new Sprite(new Texture("backicon.png"));
@@ -72,7 +71,8 @@ public class SelectLevel implements com.badlogic.gdx.Screen {
         if (l1button.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
-                game.setScreen(new Settings(game)); // Ensure PlayScreen is properly implemented
+                //game.setScreen(new Settings(game)); // Ensure PlayScreen is properly implemented
+                game.setScreen(new LevelScreen(new Level1(),this.game));
             }
         } else if (backbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);

@@ -8,6 +8,7 @@ public class Main extends Game {
     public void create() {
         // Set the initial screen to the Loading screen
         this.setScreen(new loadingscreen(this));
+        //this.setScreen(new LevelScreen(new Level1(),this));
     }
 
     @Override
