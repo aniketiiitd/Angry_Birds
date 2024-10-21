@@ -19,6 +19,7 @@ public class LevelScreen implements com.badlogic.gdx.Screen{
         OrthographicCamera camera;
         private Circle pausebutton;
         private final Game game;
+        private Sprite score;
 
         public LevelScreen(Level level, Game game) {
             this.level = level;
@@ -31,6 +32,9 @@ public class LevelScreen implements com.badlogic.gdx.Screen{
         Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
         camera= new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         pauseicon=new Sprite(new Texture("pauseicon.png"));
+        score=new Sprite(new Texture("score.png"));
+        score.setSize(173,65);
+        score.setPosition(80,800);
         pauseicon.setSize(90,90);
         pauseicon.setPosition(1487,780);
 
@@ -47,6 +51,7 @@ public class LevelScreen implements com.badlogic.gdx.Screen{
             batch.begin();
             level.render(batch); // Render the level's entities
             pauseicon.draw(batch);
+            score.draw(batch);
             batch.end();
 
         Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);

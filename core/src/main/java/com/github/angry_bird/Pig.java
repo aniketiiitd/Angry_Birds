@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Pig extends Hittable{
 
-    private Sprite pig;
+    private Sprite pigicon;
     private float x, y;
     protected int weight;
     protected int health;
@@ -12,13 +12,18 @@ public class Pig extends Hittable{
     public Pig(float x, float y, String str) {
         this.x = x;
         this.y = y;
-        this.pig=new Sprite(new Texture(str));
+        this.pigicon=new Sprite(new Texture(str));
+        pigicon.setPosition(x,y);
     }
 
     public void draw(SpriteBatch batch) {
-        batch.draw(pig, x, y);
+       pigicon.draw(batch);
+    }
+
+    public void setSize(int w,int h){
+        this.pigicon.setSize(w,h);
     }
     public void dispose() {
-        pig.getTexture().dispose();
+        pigicon.getTexture().dispose();
     }
 }

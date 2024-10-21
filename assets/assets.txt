@@ -18,6 +18,7 @@ levels.png
 penguin.png
 settingsicon.png
 backicon.png
+woodplank.png
 restartbutton.png
 cursor.png
 playicon.png
@@ -25,5 +26,7 @@ kingpig.png
 restingcatapult.png
 b2.png
 imgbin-angry-birds-stella-angry-birds-star-wars-ii-slingshot-angry-GgB6a3bSdRphL79SpMA8PXbNJ_t.jpg
+woodframe.png
 exitbutton.png
 homepage.png
+score.png

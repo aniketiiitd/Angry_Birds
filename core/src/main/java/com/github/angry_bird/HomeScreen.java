@@ -45,7 +45,7 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
 
         // Adjust the position and size to match your play button's location on the
         // image
-        playButton = new Rectangle(-170, -130, 345, 170);
+        playButton = new Rectangle(-170, -130, 335, 170);
         settingsbutton = new Circle(-720, -380, 50);
         exitbutton = new Circle(720, -380, 45);
 

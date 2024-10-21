@@ -6,21 +6,26 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Block extends Hittable{
 
-    private Sprite block;
+    private Sprite blockicon;
     private float x, y;
     protected int hardness;
     protected int material;
 
-    public Block(float x, float y, String str) {
+    public Block(float x, float y, String str,int val) {
         this.x = x;
         this.y = y;
-        this.block=new Sprite(new Texture(str));
+        this.blockicon=new Sprite(new Texture(str));
+        this.blockicon.setPosition(x,y);
+        this.blockicon.setRotation(val);
     }
 
     public void draw(SpriteBatch batch) {
-        batch.draw(block, x, y);
+        blockicon.draw(batch);
+    }
+    public void setSize(int w,int h){
+        this.blockicon.setSize(w,h);
     }
     public void dispose() {
-        block.getTexture().dispose();
+        blockicon.getTexture().dispose();
     }
 }
