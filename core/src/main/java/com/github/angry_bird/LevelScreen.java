@@ -2,6 +2,7 @@ package com.github.angry_bird;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -44,7 +45,6 @@ public class LevelScreen implements com.badlogic.gdx.Screen{
 
     @Override
         public void render(float delta) {
-            Gdx.gl.glClearColor(1, 1, 1, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
             //level.update(delta); // Update the level's game logic
@@ -66,6 +66,15 @@ public class LevelScreen implements com.badlogic.gdx.Screen{
 
         } else {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+            // Switch to the NewScreen when L is pressed
+            game.setScreen(new FailedScreen(game));
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.W)) {
+            // Switch to the NewScreen when L is pressed
+            game.setScreen(new LevelCleared(game));
         }
 
     }

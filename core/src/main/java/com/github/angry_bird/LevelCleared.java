@@ -2,6 +2,7 @@ package com.github.angry_bird;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -9,39 +10,33 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector3;
 
-public class Settings implements com.badlogic.gdx.Screen {
+public class LevelCleared implements com.badlogic.gdx.Screen {
 
     private SpriteBatch batch;
-    private Sprite settingsdisplay,muteicon,unmuteicon,reseticon;
-    private boolean val;
-    private Circle resetgamebutton;
-    private Circle volumebutton;
+    private Sprite cleareddisplay;
+
+
+    private Circle nextlevel;
+    private Circle restartbutton;
     private Circle exitbutton;
 
     OrthographicCamera camera;
     private final Game game;
-    private HomeScreen home;
 
-    public Settings(Game game, HomeScreen home) {
-        this.home = home;
+    public LevelCleared(Game game) {
         this.batch = new SpriteBatch();
         this.game = game;
-        val=false;
     }
 
     @Override
     public void show() {
         Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        settingsdisplay = new Sprite(new Texture("settings_screen.png"));
-        settingsdisplay.setSize(831,508);
-        volumebutton = new Circle(-138, -85, 70);
-        resetgamebutton = new Circle(-10, -200, 70);
-        exitbutton=new Circle(380,190,60);
-        muteicon=new Sprite(new Texture("muted.png"));
-        muteicon.setPosition(590,290);
-        unmuteicon=new Sprite(new Texture("unmuted.png"));
-        unmuteicon.setPosition(590,290);
+        cleareddisplay = new Sprite(new Texture("levelcleared.png"));
+
+        restartbutton = new Circle(-190, -310, 55);
+        //nextlevel = new Circle(-10, -200, 55);
+        exitbutton=new Circle(265,-310,55);
 
     }
 
@@ -52,36 +47,23 @@ public class Settings implements com.badlogic.gdx.Screen {
 
         //level.update(delta); // Update the level's game logic
         batch.begin();
-        batch.draw(settingsdisplay, 370, 180);
-        if (val)
-        {
-            muteicon.draw(batch);
-        }
-        else if (!val)
-        {
-            unmuteicon.draw(batch);
-        }
+        batch.draw(cleareddisplay, 550, 75);
         batch.end();
 
         Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
         camera.unproject(mousePos);
 
 //        // Check if the mouse is over the play button
-        if (volumebutton.contains(mousePos.x, mousePos.y)) {
+        if (restartbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
-            if (Gdx.input.justTouched()) {
-                //game.setScreen(new LevelScreen(new Level1(), game));
-                if(!val)
-                {val=true;}
-                else if (val) {
-                    val=false;
-                }
+            if (Gdx.input.isTouched()) {
+                game.setScreen(new LevelScreen(new Level1(), game));
             }
 
-        } else if (exitbutton.contains(mousePos.x, mousePos.y)) {
+        }  else if (exitbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
-            if (Gdx.input.justTouched()) {
-                game.setScreen(this.home);
+            if (Gdx.input.isTouched()) {
+                game.setScreen(new SelectLevel(game,new HomeScreen(game)));
             }
         }else {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
@@ -106,9 +88,7 @@ public class Settings implements com.badlogic.gdx.Screen {
     @Override
     public void dispose () {
         batch.dispose();
-        settingsdisplay.getTexture().dispose();
-        muteicon.getTexture().dispose();
-        unmuteicon.getTexture().dispose();
+        cleareddisplay.getTexture().dispose();
     }
 
     // Other Screen methods like resize, pause, etc., would go here

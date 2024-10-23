@@ -2,7 +2,6 @@ package com.github.angry_bird;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -35,7 +34,7 @@ public class PauseScreen implements com.badlogic.gdx.Screen {
         Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         pausedisplay = new Sprite(new Texture("pausescreen.png"));
-
+        pausedisplay.setSize(831,508);
         restartbutton = new Circle(-330, -205, 70);
         playbutton = new Circle(-10, -200, 70);
         exitbutton=new Circle(295,-200,70);
