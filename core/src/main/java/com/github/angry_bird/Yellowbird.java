@@ -6,4 +6,7 @@ public class Yellowbird extends Bird{
         super(x, y, str);
         super.setSize(68,60);
     }
+
+    @Override
+    public void specialmove(){}
 }

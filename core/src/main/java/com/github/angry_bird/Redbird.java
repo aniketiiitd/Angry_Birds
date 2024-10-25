@@ -7,5 +7,6 @@ public class Redbird extends Bird {
         super.setSize(62,60);
     }
 
+    @Override
     public void specialmove(){}
 }

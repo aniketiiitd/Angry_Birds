@@ -4,9 +4,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Level {
+public class Level implements Serializable {
     protected ArrayList<Bird> birds;
     protected ArrayList<Pig> pigs;
     protected ArrayList<Block> blocks;
@@ -64,4 +65,7 @@ public class Level {
         }
         catapult.dispose();
     }
+
+    public void save_exit(){}
+    public void pass_or_fail(){}
 }

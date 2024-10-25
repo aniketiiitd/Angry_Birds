@@ -14,7 +14,7 @@ public class Bird {
     public Bird(float x, float y, String str) {
         this.x = x;
         this.y = y;
-        this.birdicon=new Sprite(new Texture(str));
+        this.birdicon = new Sprite(new Texture(str));
         birdicon.setPosition(x, y);
 
 
@@ -29,6 +29,18 @@ public class Bird {
     }
 
     public void setSize(int h, int w) {
-        this.birdicon.setSize(h,w);
+        this.birdicon.setSize(h, w);
     }
+
+    public void specialmove() {}
+
+    public void getpulled(){}
+
+    public void launch(){}
+
+    public void hitblock(Block block){}
+
+    public void hitpig(Pig pig){}
+
+    public void vanish(){}
 }

@@ -26,4 +26,9 @@ public class Pig extends Hittable{
     public void dispose() {
         pigicon.getTexture().dispose();
     }
+    public void die(){}
+
+    public boolean isalive(){
+        return true;
+    }
 }

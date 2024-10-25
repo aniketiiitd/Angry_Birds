@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Catapult {
     private Sprite sprite;
+    Bird currentbird;
 
     public Catapult() {
         sprite = new Sprite(new Texture("pulledcatapult.png"));
@@ -40,4 +41,8 @@ public class Catapult {
     public void dispose() {
         sprite.getTexture().dispose();
     }
+    public void pull(Bird bird){}
+    public void release(Bird bird){}
+    public void load(Bird bird){}
+    public void givetrajectory(){}
 }

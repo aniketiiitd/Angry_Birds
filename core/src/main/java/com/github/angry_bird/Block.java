@@ -9,7 +9,7 @@ public class Block extends Hittable{
     private Sprite blockicon;
     private float x, y;
     protected int hardness;
-    protected int material;
+    protected String material;
 
     public Block(float x, float y, String str,int val) {
         this.x = x;

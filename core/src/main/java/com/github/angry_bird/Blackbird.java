@@ -5,4 +5,7 @@ public class Blackbird extends Bird{
         super(x, y, str);
         super.setSize(60,78);
     }
+
+    @Override
+    public void specialmove(){}
 }
