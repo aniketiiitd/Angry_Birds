@@ -57,8 +57,8 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
 
     @Override
     public void render(float delta) {
-        //  Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
-        //Gdx.gl.glClearColor(0, 0, 0, 1);
+        // Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
+        // Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // batch.setProjectionMatrix(camera.combined);
@@ -83,7 +83,7 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
         } else if (settingsbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
-                game.setScreen(new Settings(game,this)); // Ensure PlayScreen is properly implemented
+                game.setScreen(new Settings(game, this)); // Ensure PlayScreen is properly implemented
             }
         } else if (exitbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);

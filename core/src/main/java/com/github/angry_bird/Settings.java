@@ -12,10 +12,11 @@ import com.badlogic.gdx.math.Vector3;
 public class Settings implements com.badlogic.gdx.Screen {
 
     private SpriteBatch batch;
-    private Sprite settingsdisplay,muteicon,unmuteicon,reseticon;
+    private Sprite settingsdisplay, muteicon, unmuteicon;
     private boolean val;
-    private Circle resetgamebutton;
+    // private Circle resetgamebutton;
     private Circle volumebutton;
+    private Circle resetbutton;
     private Circle exitbutton;
 
     OrthographicCamera camera;
@@ -26,7 +27,7 @@ public class Settings implements com.badlogic.gdx.Screen {
         this.home = home;
         this.batch = new SpriteBatch();
         this.game = game;
-        val=false;
+        val = false;
     }
 
     @Override
@@ -34,31 +35,28 @@ public class Settings implements com.badlogic.gdx.Screen {
         Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         settingsdisplay = new Sprite(new Texture("settings_screen.png"));
-        settingsdisplay.setSize(831,508);
+        settingsdisplay.setSize(831, 508);
         volumebutton = new Circle(-138, -85, 70);
-        resetgamebutton = new Circle(-10, -200, 70);
-        exitbutton=new Circle(380,190,60);
-        muteicon=new Sprite(new Texture("muted.png"));
-        muteicon.setPosition(590,290);
-        unmuteicon=new Sprite(new Texture("unmuted.png"));
-        unmuteicon.setPosition(590,290);
+        resetbutton = new Circle(85, -85, 70);
+        exitbutton = new Circle(380, 190, 60);
+        muteicon = new Sprite(new Texture("muted.png"));
+        muteicon.setPosition(590, 290);
+        unmuteicon = new Sprite(new Texture("unmuted.png"));
+        unmuteicon.setPosition(590, 290);
 
     }
 
     @Override
     public void render(float delta) {
-//        Gdx.gl.glClearColor(0, 0, 0, 0);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        // Gdx.gl.glClearColor(0, 0, 0, 0);
+        // Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //level.update(delta); // Update the level's game logic
+        // level.update(delta); // Update the level's game logic
         batch.begin();
         batch.draw(settingsdisplay, 370, 180);
-        if (val)
-        {
+        if (val) {
             muteicon.draw(batch);
-        }
-        else if (!val)
-        {
+        } else if (!val) {
             unmuteicon.draw(batch);
         }
         batch.end();
@@ -66,45 +64,52 @@ public class Settings implements com.badlogic.gdx.Screen {
         Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
         camera.unproject(mousePos);
 
-//        // Check if the mouse is over the play button
+        // // Check if the mouse is over the play button
         if (volumebutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.justTouched()) {
-                //game.setScreen(new LevelScreen(new Level1(), game));
-                if(!val)
-                {val=true;}
-                else if (val) {
-                    val=false;
+                // game.setScreen(new LevelScreen(new Level1(), game));
+                if (!val) {
+                    val = true;
+                } else if (val) {
+                    val = false;
                 }
             }
 
+        } else if (resetbutton.contains(mousePos.x, mousePos.y)) {
+            Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
+            if (Gdx.input.justTouched()) {
+                LevelScreen.ResetGame();
+            }
         } else if (exitbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.justTouched()) {
                 game.setScreen(this.home);
             }
-        }else {
+        } else {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
         }
 
     }
+
     @Override
-    public void resize ( int width, int height){
+    public void resize(int width, int height) {
     }
 
     @Override
-    public void pause () {
+    public void pause() {
     }
 
     @Override
-    public void resume () {
+    public void resume() {
     }
 
     @Override
-    public void hide () {
+    public void hide() {
     }
+
     @Override
-    public void dispose () {
+    public void dispose() {
         batch.dispose();
         settingsdisplay.getTexture().dispose();
         muteicon.getTexture().dispose();
@@ -112,6 +117,5 @@ public class Settings implements com.badlogic.gdx.Screen {
     }
 
     // Other Screen methods like resize, pause, etc., would go here
-
 
 }

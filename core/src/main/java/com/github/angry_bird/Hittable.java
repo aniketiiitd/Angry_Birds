@@ -1,8 +1,14 @@
 package com.github.angry_bird;
 
-public class Hittable {
+import com.badlogic.gdx.graphics.Texture;
 
-    public void felldown(){}
-    public void hitblock(Block block){}
-    public void hitpig(Pig pig){}
+import com.badlogic.gdx.physics.box2d.*;
+
+public class Hittable {
+    protected Body body;
+    protected int health;
+    protected float vanishTimer = 0;
+    protected float alpha = 1f;
+    protected Texture texture;
+    protected String name;
 }

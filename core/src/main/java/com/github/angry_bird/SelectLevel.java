@@ -42,6 +42,8 @@ public class SelectLevel implements com.badlogic.gdx.Screen {
         levels = new Sprite(new Texture("levels.png"));
         backicon = new Sprite(new Texture("backicon.png"));
         l1button = new Rectangle(-400, -210, 160, 270);
+        l2button = new Rectangle(-150, -210, 160, 270);
+        l3button = new Rectangle(180, -210, 160, 270);
         backbutton = new Circle(-735, 380, 45);
         // back=new Circle();
 
@@ -70,9 +72,39 @@ public class SelectLevel implements com.badlogic.gdx.Screen {
         // Check if the mouse is over the play button
         if (l1button.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
-            if (Gdx.input.isTouched()) {
-                //game.setScreen(new Settings(game)); // Ensure PlayScreen is properly implemented
-                game.setScreen(new LevelScreen(new Level1(),this.game));
+            if (Gdx.input.justTouched()) {
+                LevelScreen screen = new LevelScreen(game, new Level1());
+                screen.pause();
+                try {
+                    game.setScreen(screen);
+                } catch (NullPointerException e) {
+                    screen.resume();
+                    game.setScreen(screen);
+                }
+            }
+        } else if (l2button.contains(mousePos.x, mousePos.y)) {
+            Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
+            if (Gdx.input.justTouched()) {
+                LevelScreen screen = new LevelScreen(game, new Level2());
+                screen.pause();
+                try {
+                    game.setScreen(screen);
+                } catch (NullPointerException e) {
+                    screen.resume();
+                    game.setScreen(screen);
+                }
+            }
+        } else if (l3button.contains(mousePos.x, mousePos.y)) {
+            Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
+            if (Gdx.input.justTouched()) {
+                LevelScreen screen = new LevelScreen(game, new Level3());
+                screen.pause();
+                try {
+                    game.setScreen(screen);
+                } catch (NullPointerException e) {
+                    screen.resume();
+                    game.setScreen(screen);
+                }
             }
         } else if (backbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);

@@ -14,19 +14,20 @@ public class PauseScreen implements com.badlogic.gdx.Screen {
     private SpriteBatch batch;
     private Sprite pausedisplay;
 
-
     private Circle playbutton;
     private Circle restartbutton;
     private Circle exitbutton;
 
     OrthographicCamera camera;
     private final Game game;
-    private LevelScreen lvlscreen;
+    private Level level;
+    // private LevelScreen lvlscreen;
 
-    public PauseScreen(Game game, LevelScreen lvlscreen) {
-        this.lvlscreen = lvlscreen;
+    public PauseScreen(Game game, Level lvl) {
+        // this.lvlscreen = lvlscreen;
         this.batch = new SpriteBatch();
         this.game = game;
+        this.level = lvl;
     }
 
     @Override
@@ -34,19 +35,19 @@ public class PauseScreen implements com.badlogic.gdx.Screen {
         Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         pausedisplay = new Sprite(new Texture("pausescreen.png"));
-        pausedisplay.setSize(831,508);
+        pausedisplay.setSize(831, 508);
         restartbutton = new Circle(-330, -205, 70);
         playbutton = new Circle(-10, -200, 70);
-        exitbutton=new Circle(295,-200,70);
+        exitbutton = new Circle(295, -200, 70);
 
     }
 
     @Override
     public void render(float delta) {
-//        Gdx.gl.glClearColor(0, 0, 0, 0);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        // Gdx.gl.glClearColor(0, 0, 0, 0);
+        // Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //level.update(delta); // Update the level's game logic
+        // level.update(delta); // Update the level's game logic
         batch.begin();
         batch.draw(pausedisplay, 370, 180);
         batch.end();
@@ -54,50 +55,59 @@ public class PauseScreen implements com.badlogic.gdx.Screen {
         Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
         camera.unproject(mousePos);
 
-//        // Check if the mouse is over the play button
+        // // Check if the mouse is over the play button
         if (restartbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
-                game.setScreen(new LevelScreen(new Level1(), game));
+                LevelScreen newscreen = new LevelScreen(game, level);
+                LevelScreen.ClearGameState();
+                game.setScreen(newscreen);
             }
 
         } else if (playbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
-                game.setScreen(this.lvlscreen);
+                LevelScreen resumescreen = new LevelScreen(game, level);
+                resumescreen.pause();
+                // resumescreen.loadGameState(LevelScreen.loadFromFile());
+                // resumescreen.resume();
+                game.setScreen(resumescreen);
+                // this.lvlscreen.resume();
+                // this.lvlscreen.loadFromFile();
             }
         } else if (exitbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
-                game.setScreen(new SelectLevel(game,new HomeScreen(game)));
+                game.setScreen(new SelectLevel(game, new HomeScreen(game)));
             }
-        }else {
+        } else {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
         }
 
     }
-        @Override
-        public void resize ( int width, int height){
-        }
 
-        @Override
-        public void pause () {
-        }
+    @Override
+    public void resize(int width, int height) {
+    }
 
-        @Override
-        public void resume () {
-        }
+    @Override
+    public void pause() {
+    }
 
-        @Override
-        public void hide () {
-        }
-        @Override
-        public void dispose () {
-            batch.dispose();
-            pausedisplay.getTexture().dispose();
-        }
+    @Override
+    public void resume() {
+    }
 
-        // Other Screen methods like resize, pause, etc., would go here
+    @Override
+    public void hide() {
+    }
 
+    @Override
+    public void dispose() {
+        batch.dispose();
+        pausedisplay.getTexture().dispose();
+    }
+
+    // Other Screen methods like resize, pause, etc., would go here
 
 }
