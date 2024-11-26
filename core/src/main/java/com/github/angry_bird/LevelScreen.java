@@ -2,6 +2,7 @@ package com.github.angry_bird;
 
 import com.badlogic.gdx.Gdx;
 //import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 //import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Cursor;
@@ -250,10 +251,10 @@ public class LevelScreen implements Screen, ContactListener {
         }
     }
 
-    // private void special_move_yellow() {
-    //     Vector2 currvelocity = currbird.body.getLinearVelocity();
-    //     currbird.body.setLinearVelocity(currvelocity.x * 1.25f, currvelocity.y * 1.25f);
-    // }
+     private void special_move_yellow() {
+         Vector2 currvelocity = currbird.body.getLinearVelocity();
+         currbird.body.setLinearVelocity(currvelocity.x * 1.25f, currvelocity.y * 1.25f);
+     }
 
     @Override
     public void render(float delta) {
@@ -277,10 +278,10 @@ public class LevelScreen implements Screen, ContactListener {
         }
         texturesToRemove.clear();
 
-        // if (currbird != null && currbird.name.equals("Yellow") && !currbird.hashitonce && currbird.isLaunched
-        //         && Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-        //     special_move_yellow();
-        // }
+         if (currbird != null && currbird.name.equals("Yellow") && !currbird.hashitonce && currbird.isLaunched
+                 && Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+             special_move_yellow();
+         }
 
         batch.begin();
         batch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

@@ -5,7 +5,7 @@ import com.badlogic.gdx.physics.box2d.*;
 
 public class NormalPig extends Pig {
     public NormalPig(World world, LevelScreen lvlscreen, float x, float y) {
-        super(40, new Texture("plainpig.png"), world, 1.0f, x, y, 0.33f); // Type A pig with 100 health
+        super(25, new Texture("plainpig.png"), world, 1.0f, x, y, 0.33f); // Type A pig with 100 health
         this.Pig_Scale = 0.65f;
         this.levelScreen = lvlscreen;
         this.name="normalpig";
