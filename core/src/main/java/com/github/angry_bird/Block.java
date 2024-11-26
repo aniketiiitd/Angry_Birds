@@ -14,6 +14,7 @@ public class Block extends Hittable {
     protected LevelScreen levelScreen;
     protected float torque = 0;
     protected float Block_Scale;
+    protected float Width;
     // private float VANISH_TIME = 1f;
 
     public Block(World world, int health, Texture texture, float density, float x, float y) {

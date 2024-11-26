@@ -33,6 +33,7 @@ muted.png
 settings_screen.png
 hs_err_pid15786.log
 kingpig.png
+level_status.txt
 b2.png
 unmuted.png
 exitbutton.png

@@ -8,6 +8,7 @@ public class StoneBlock extends Block {
         super(world, 40, new Texture("steelrod.png"), 1.2f, x, y); // Wooden blocks may have 50 health
         this.levelScreen = lvlscreen;
         this.Block_Scale = 0.85f;
+        this.Width = 0.12f;
         this.name = "stoneplank";
     }
 }

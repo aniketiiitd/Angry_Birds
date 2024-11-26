@@ -90,7 +90,7 @@ public class LevelCleared implements com.badlogic.gdx.Screen {
         } else if (nextbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
-                if (this.level instanceof Level1) {
+                if (this.level instanceof Level1 && LevelStatusManager.readLevelStatus("Level2")) {
                     LevelScreen screen = new LevelScreen(game, new Level2());
                     screen.pause();
                     try {
@@ -101,7 +101,7 @@ public class LevelCleared implements com.badlogic.gdx.Screen {
                     }
                 }
 
-                else if (this.level instanceof Level2) {
+                else if (this.level instanceof Level2 && LevelStatusManager.readLevelStatus("Level3")) {
                     LevelScreen screen = new LevelScreen(game, new Level3());
                     screen.pause();
                     try {

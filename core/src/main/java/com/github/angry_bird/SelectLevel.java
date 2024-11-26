@@ -42,8 +42,8 @@ public class SelectLevel implements com.badlogic.gdx.Screen {
         levels = new Sprite(new Texture("levels.png"));
         backicon = new Sprite(new Texture("backicon.png"));
         l1button = new Rectangle(-400, -210, 160, 270);
-        l2button = new Rectangle(-150, -210, 160, 270);
-        l3button = new Rectangle(180, -210, 160, 270);
+        l2button = new Rectangle(-100, -210, 160, 270);
+        l3button = new Rectangle(200, -210, 160, 270);
         backbutton = new Circle(-735, 380, 45);
         // back=new Circle();
 
@@ -82,7 +82,7 @@ public class SelectLevel implements com.badlogic.gdx.Screen {
                     game.setScreen(screen);
                 }
             }
-        } else if (l2button.contains(mousePos.x, mousePos.y)) {
+        } else if (l2button.contains(mousePos.x, mousePos.y) && LevelStatusManager.readLevelStatus("Level2")) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.justTouched()) {
                 LevelScreen screen = new LevelScreen(game, new Level2());
@@ -94,7 +94,7 @@ public class SelectLevel implements com.badlogic.gdx.Screen {
                     game.setScreen(screen);
                 }
             }
-        } else if (l3button.contains(mousePos.x, mousePos.y)) {
+        } else if (l3button.contains(mousePos.x, mousePos.y) && LevelStatusManager.readLevelStatus("Level3")) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.justTouched()) {
                 LevelScreen screen = new LevelScreen(game, new Level3());
