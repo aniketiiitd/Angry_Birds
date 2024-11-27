@@ -9,10 +9,15 @@ buildscript {
     maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
   }
   dependencies {
-
-
+    // testImplementation "org.junit.jupiter:junit-jupiter-api:5.10.0"
+    // testImplementation "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+    // testImplementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+    // testImplementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    // testImplementation "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+    // testImplementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
   }
 }
+
 
 allprojects {
   apply plugin: 'eclipse'
@@ -58,7 +63,7 @@ configure(subprojects) {
 
 subprojects {
   version = '$projectVersion'
-  ext.appName = 'Angry_Birds_Physics'
+  ext.appName = 'Angry_Birds'
   repositories {
     mavenCentral()
     maven { url 'https://s01.oss.sonatype.org' }
@@ -70,4 +75,4 @@ subprojects {
   }
 }
 
-eclipse.project.name = 'Angry_Birds_Physics' + '-parent'
+eclipse.project.name = 'Angry_Birds' + '-parent'

@@ -1,12 +1,12 @@
 package com.github.angry_bird;
 
-import com.badlogic.gdx.physics.box2d.BodyDef;
+//import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Timer;
+//import com.badlogic.gdx.utils.Timer;
 
 public class Level1 implements Level {
 
-    private static final float FIXED_ROTATION_TIMEOUT = 2.0f;
+    //private static final float FIXED_ROTATION_TIMEOUT = 2.0f;
 
     @Override
     public void createlevel(LevelScreen levelScreen, World world) {

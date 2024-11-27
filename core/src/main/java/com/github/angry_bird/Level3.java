@@ -7,13 +7,13 @@ public class Level3 implements Level {
     @Override
     public void createlevel(LevelScreen levelScreen, World world) {
 
-        //birdQueue.add(new BlueBird(world)); // A new type of bird for variety
-        levelScreen.birdQueue.add(new RedBird(world));
+        // birdQueue.add(new BlueBird(world)); // A new type of bird for variety
         levelScreen.birdQueue.add(new RedBird(world));
         levelScreen.birdQueue.add(new YellowBird(world));
+        levelScreen.birdQueue.add(new RedBird(world));
         levelScreen.birdQueue.add(new YellowBird(world));
         levelScreen.birdQueue.add(new BlackBird(world));
-        levelScreen.birdQueue.add(new BlackBird(world));
+        levelScreen.birdQueue.add(new YellowBird(world));
 
         // backgroundTexture = new Texture("level2backdrop.png"); // Updated background
         // for Level 2
@@ -26,7 +26,6 @@ public class Level3 implements Level {
         levelScreen.pigList.add(new NormalPig(world, levelScreen, 13.85f, 1.5f));
         levelScreen.pigList.add(new FatPig(world, levelScreen, 8.6f, 3.5f)); // A stronger pig for added difficulty
         levelScreen.pigList.add(new FatPig(world, levelScreen, 8.6f, 1.5f));
-
 
         // Adding more blocks with varied transformations
         levelScreen.blockList.add(new StoneBlock(world, levelScreen, 11.9f, 1.5f));
