@@ -20,7 +20,4 @@ public class GameState implements Serializable {
     public ArrayList<HittableState> pigList = new ArrayList<>();
     public ArrayList<HittableState> blockList = new ArrayList<>();
 
-    // // World properties (optional)
-    // public ArrayList<BodyState> bodies = new ArrayList<>();
-
 }

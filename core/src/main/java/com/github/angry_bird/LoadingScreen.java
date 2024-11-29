@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class LoadingScreen implements com.badlogic.gdx.Screen {
 
-    private final Game game; // Reference to the main game class
+    private final Game game; 
     // private OrthographicCamera camera;
     private SpriteBatch batch;
     private Sprite sprite;
@@ -22,10 +22,6 @@ public class LoadingScreen implements com.badlogic.gdx.Screen {
 
     @Override
     public void show() {
-        // Initialize camera and viewport
-        // camera = new OrthographicCamera();
-
-        // Initialize batch and sprite
         batch = new SpriteBatch();
         sprite = new Sprite(new Texture("loading.png"));
 
@@ -37,15 +33,13 @@ public class LoadingScreen implements com.badlogic.gdx.Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // Draw the loading image
         batch.begin();
-        sprite.draw(batch); // Sprite will now be centered automatically by the camera
+        sprite.draw(batch); 
         batch.end();
 
-        // Simulate loading time (wait for 3 seconds)
         loadingTime += delta;
         if (loadingTime > 3.0f) {
-            game.setScreen(new HomeScreen(game)); // Transition to the home screen after 3 seconds
+            game.setScreen(new HomeScreen(game)); 
         }
     }
 

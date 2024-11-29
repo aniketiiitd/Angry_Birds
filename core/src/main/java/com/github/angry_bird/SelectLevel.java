@@ -15,7 +15,7 @@ import java.awt.*;
 
 public class SelectLevel implements com.badlogic.gdx.Screen {
 
-    private final Game game; // Reference to the main game class
+    private final Game game;
     private OrthographicCamera camera;
     private SpriteBatch batch;
     private Sprite title, levels, backicon;
@@ -33,7 +33,7 @@ public class SelectLevel implements com.badlogic.gdx.Screen {
 
     @Override
     public void show() {
-        // Initialize camera and viewport
+        
         Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch = new SpriteBatch();
@@ -65,11 +65,10 @@ public class SelectLevel implements com.badlogic.gdx.Screen {
         batch.draw(backicon, 30, 780);
         batch.end();
 
-        // Get the mouse position in world coordinates
+        
         Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
         camera.unproject(mousePos);
 
-        // Check if the mouse is over the play button
         if (l1button.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.justTouched()) {
@@ -109,7 +108,7 @@ public class SelectLevel implements com.badlogic.gdx.Screen {
         } else if (backbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
-                game.setScreen(home); // Ensure PlayScreen is properly implemented
+                game.setScreen(home); 
             }
         } else {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);

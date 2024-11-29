@@ -33,7 +33,6 @@ public class Pig extends Hittable {
     }
 
     public void destroyPig() {
-        // Add logic to remove the pig from the world and clean up
         body.getWorld().destroyBody(body);
     }
 
@@ -46,20 +45,19 @@ public class Pig extends Hittable {
     }
 
     private void createPig(World world, Float x, Float y) {
-        // Initially set the bird as Kinematic to keep it still on the catapult
+
         BodyDef bodydef = new BodyDef();
-        bodydef.type = BodyDef.BodyType.DynamicBody; // Keep it kinematic until the launch
-        bodydef.position.set(x, y); // Position the bird at the catapult
+        bodydef.type = BodyDef.BodyType.DynamicBody;
+        bodydef.position.set(x, y);
 
         Body pigbody = world.createBody(bodydef);
         Shape shape = new CircleShape();
-        shape.setRadius(this.radius); // Default size (radius 0.25 meters)
+        shape.setRadius(this.radius);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = this.density;
-        fixtureDef.friction = 0.5f; // Ensure low friction so that the bird doesn't slide prematurely
-        // fixtureDef.restitution = 0.5f;
+        fixtureDef.friction = 0.5f;
 
         pigbody.createFixture(fixtureDef);
         this.body = pigbody;
@@ -67,5 +65,5 @@ public class Pig extends Hittable {
 
         shape.dispose();
     }
-    // You can have different pig types by extending this class
+
 }

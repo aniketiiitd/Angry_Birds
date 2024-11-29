@@ -15,11 +15,6 @@ public class Level3 implements Level {
         levelScreen.birdQueue.add(new BlackBird(world));
         levelScreen.birdQueue.add(new YellowBird(world));
 
-        // backgroundTexture = new Texture("level2backdrop.png"); // Updated background
-        // for Level 2
-        // catapultTexture = new Texture("catapult.png");
-
-        // Adding more pigs to make the level harder
         levelScreen.pigList.add(new NormalPig(world, levelScreen, 12.5f, 1.5f));
         levelScreen.pigList.add(new KingPig(world, levelScreen, 12.55f, 3.0f));
         levelScreen.pigList.add(new KingPig(world, levelScreen, 13.6f, 3.0f));

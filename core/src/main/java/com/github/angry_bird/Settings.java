@@ -48,10 +48,7 @@ public class Settings implements com.badlogic.gdx.Screen {
 
     @Override
     public void render(float delta) {
-        // Gdx.gl.glClearColor(0, 0, 0, 0);
-        // Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        // level.update(delta); // Update the level's game logic
+        
         batch.begin();
         batch.draw(settingsdisplay, 370, 180);
         if (val) {
@@ -68,7 +65,7 @@ public class Settings implements com.badlogic.gdx.Screen {
         if (volumebutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.justTouched()) {
-                // game.setScreen(new LevelScreen(new Level1(), game));
+                
                 if (!val) {
                     val = true;
                 } else if (val) {
@@ -116,6 +113,5 @@ public class Settings implements com.badlogic.gdx.Screen {
         unmuteicon.getTexture().dispose();
     }
 
-    // Other Screen methods like resize, pause, etc., would go here
 
 }

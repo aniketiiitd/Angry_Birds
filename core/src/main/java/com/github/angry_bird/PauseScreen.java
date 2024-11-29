@@ -108,6 +108,5 @@ public class PauseScreen implements com.badlogic.gdx.Screen {
         pausedisplay.getTexture().dispose();
     }
 
-    // Other Screen methods like resize, pause, etc., would go here
 
 }

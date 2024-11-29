@@ -19,14 +19,4 @@ public class YellowBird extends Bird {
         spped_scale = -11f;
     }
 
-    @Override
-    public void launch(Vector2 velocity) {
-        // body.setLinearVelocity(velocity);
-        // Black bird specific launch behavior (e.g., explosive after impact)
-    }
-
-    @Override
-    public void update(float delta) {
-        // Black bird specific updates
-    }
 }

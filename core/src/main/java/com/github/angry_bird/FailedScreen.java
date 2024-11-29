@@ -45,7 +45,6 @@ public class FailedScreen implements com.badlogic.gdx.Screen {
     @Override
     public void render(float delta) {
 
-        // level.update(delta); // Update the level's game logic
         batch.begin();
         batch.draw(faileddisplay, 550, 160);
         batch.end();
@@ -53,7 +52,6 @@ public class FailedScreen implements com.badlogic.gdx.Screen {
         Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
         camera.unproject(mousePos);
 
-        // // Check if the mouse is over the play button
         if (restartbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
@@ -92,7 +90,5 @@ public class FailedScreen implements com.badlogic.gdx.Screen {
         batch.dispose();
         faileddisplay.getTexture().dispose();
     }
-
-    // Other Screen methods like resize, pause, etc., would go here
 
 }

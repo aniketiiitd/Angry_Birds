@@ -41,10 +41,6 @@ public abstract class Bird {
         this.body.setAngularVelocity(0.0f); // Set angular speed to zero
     }
 
-    public abstract void launch(Vector2 velocity);
-
-    public abstract void update(float delta);
-
     private void createBird(World world) {
         // Initially set the bird as Kinematic to keep it still on the catapult
         BodyDef bodydef = new BodyDef();

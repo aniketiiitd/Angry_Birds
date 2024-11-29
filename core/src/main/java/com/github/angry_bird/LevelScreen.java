@@ -38,15 +38,13 @@ import java.util.Queue;
 public class LevelScreen implements Screen, ContactListener {
     private Vector2 releaseVelocity;
     private Vector2 initialTouchPosition;
-    private static final float WORLD_WIDTH = 16.0f; // Adjust for Box2D units (meters)
+    private static final float WORLD_WIDTH = 16.0f; 
     private static final float WORLD_HEIGHT = 9.0f;
-    private static final float GROUND_Y = 0.6f; // Y position for ground surface
-    // private static final float currbird.BIRD_SCALE = 0.25f; // Scale factor for
-    // the bird texture
-    private static final float VANISH_TIME = 0.9f; // Time before bird vanishes in seconds
+    private static final float GROUND_Y = 0.6f; 
+    private static final float VANISH_TIME = 0.9f; 
     private static final float hittable_VANISH_TIME = 0.5f;
-    private static final int TRAJECTORY_POINTS = 20; // Number of points in the trajectory
-    private static final float TIME_STEP = 0.1f; // Time between points in seconds
+    private static final int TRAJECTORY_POINTS = 20; 
+    private static final float TIME_STEP = 0.1f; 
     ArrayList<Body> bodiesToRemove = new ArrayList<>();
     ArrayList<Texture> texturesToRemove = new ArrayList<>();
     protected Queue<Bird> birdQueue = new LinkedList<>();
@@ -66,18 +64,15 @@ public class LevelScreen implements Screen, ContactListener {
 
     private MouseJoint mouseJoint;
     private boolean isDragging = false;
-    // private boolean isLaunched = false; // Flag to prevent re-launching
-    private float vanishTimer = 0f; // Timer for bird disappearance
-    // private float birdAlpha = 1f;
+    
+    private float vanishTimer = 0f; 
     private TextureRegion birdRegion;
     protected int score = 0;
     private BitmapFont font;
     private BitmapFont birdcount;
     private Game game;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
-    // private ShapeRenderer sr1;
     private Sprite pauseicon;
-    // private Circle pausebutton;
     OrthographicCamera camera;
     protected Level level;
     private boolean ispaused = false;
@@ -100,29 +95,27 @@ public class LevelScreen implements Screen, ContactListener {
 
     @Override
     public void show() {
-        world = new World(new Vector2(0, -9.8f), true); // Gravity
+        world = new World(new Vector2(0, -9.8f), true); 
         debugRenderer = new Box2DDebugRenderer();
         batch = new SpriteBatch();
-        world.setContactListener(this); // Registers the current class as the listener
+        world.setContactListener(this); 
 
         initialTouchPosition = new Vector2();
         releaseVelocity = new Vector2();
 
-        // Create ground with friction to stop the bird from sliding
         BodyDef groundBodyDef = new BodyDef();
-        groundBodyDef.position.set(0, GROUND_Y); // Correct Y position of the ground
+        groundBodyDef.position.set(0, GROUND_Y); 
         Body groundBody = world.createBody(groundBodyDef);
 
         EdgeShape groundEdge = new EdgeShape();
-        groundEdge.set(-WORLD_WIDTH / 4, GROUND_Y, WORLD_WIDTH + 1f, GROUND_Y); // Ground spans full screen width
+        groundEdge.set(-WORLD_WIDTH / 4, GROUND_Y, WORLD_WIDTH + 1f, GROUND_Y); 
         FixtureDef groundFixtureDef = new FixtureDef();
         groundFixtureDef.shape = groundEdge;
-        groundFixtureDef.friction = 0.5f; // Friction to prevent sliding
+        groundFixtureDef.friction = 0.5f; 
         groundBody.createFixture(groundFixtureDef);
         groundBody.setUserData("ground");
         groundEdge.dispose();
 
-        // Create screen boundaries (left and right)
         BodyDef boundaryBodyDef = new BodyDef();
         Body boundaryBody = world.createBody(boundaryBodyDef);
 
@@ -151,8 +144,8 @@ public class LevelScreen implements Screen, ContactListener {
 
         }
 
-        font = new BitmapFont(); // Use default font; you can also load custom fonts
-        font.getData().setScale(2); // Scale up the font if needed
+        font = new BitmapFont();
+        font.getData().setScale(2);
 
         birdcount = new BitmapFont();
         birdcount.getData().setScale(2f);
@@ -170,25 +163,19 @@ public class LevelScreen implements Screen, ContactListener {
     private void pauseinput() {
         Vector2 touchPos = new Vector2(Gdx.input.getX() / 100f, (Gdx.graphics.getHeight() - Gdx.input.getY()) / 70f);
 
-        // Pause button clickable area (in world units)
-        float pauseButtonX = 1530f / 100f; // Convert screen coordinates to world units
-        float pauseButtonY = 830f / 70f; // Convert screen coordinates to world units
-        float pauseButtonRadius = 45f / 100f; // Convert radius to world units
+        float pauseButtonX = 1530f / 100f;
+        float pauseButtonY = 830f / 70f;
+        float pauseButtonRadius = 45f / 100f;
 
         // Check if touch is within the pause button area
         if (touchPos.dst(pauseButtonX, pauseButtonY) <= pauseButtonRadius) {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
 
-            // Handle click event on pause button
             if (Gdx.input.isTouched()) {
-                // System.out.println("Pause button clicked!");
-                // if (currbird.isLaunched ) {
 
-                // }
                 pause();
                 saveToFile(saveGameState());
                 game.setScreen(new PauseScreen(game, level));
-                // Add your pause logic here, e.g., switch to a pause menu or stop the game loop
             }
         } else {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
@@ -251,10 +238,10 @@ public class LevelScreen implements Screen, ContactListener {
         }
     }
 
-     private void special_move_yellow() {
-         Vector2 currvelocity = currbird.body.getLinearVelocity();
-         currbird.body.setLinearVelocity(currvelocity.x * 1.25f, currvelocity.y * 1.25f);
-     }
+    private void special_move_yellow() {
+        Vector2 currvelocity = currbird.body.getLinearVelocity();
+        currbird.body.setLinearVelocity(currvelocity.x * 1.25f, currvelocity.y * 1.25f);
+    }
 
     @Override
     public void render(float delta) {
@@ -278,10 +265,10 @@ public class LevelScreen implements Screen, ContactListener {
         }
         texturesToRemove.clear();
 
-         if (currbird != null && currbird.name.equals("Yellow") && !currbird.hashitonce && currbird.isLaunched
-                 && Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-             special_move_yellow();
-         }
+        if (currbird != null && currbird.name.equals("Yellow") && !currbird.hashitonce && currbird.isLaunched
+                && Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            special_move_yellow();
+        }
 
         batch.begin();
         batch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -362,8 +349,7 @@ public class LevelScreen implements Screen, ContactListener {
             blocktoremove.clear();
 
         }
-        if (currbird != null && !pigList.isEmpty()) { // Check if currbird is not null
-            // Set color with alpha to control bird opacity
+        if (currbird != null && !pigList.isEmpty()) {
 
             batch.setColor(1f, 1f, 1f, currbird.birdAlpha);
             batch.draw(
@@ -405,11 +391,9 @@ public class LevelScreen implements Screen, ContactListener {
                 // Get bird's current position
                 Vector2 birdPosition = new Vector2(currbird.body.getPosition().x * 100,
                         currbird.body.getPosition().y * 100);
-                // birdPosition.y += 100;
-                // Draw left elastic
+
                 drawThickLine(catapultAnchorLeft, birdPosition, 6f);
 
-                // Draw right elastic
                 drawThickLine(catapultAnchorRight, birdPosition, 6f);
 
                 shapeRenderer.end();
@@ -446,9 +430,7 @@ public class LevelScreen implements Screen, ContactListener {
                     // Recheck the condition after a short delay
                     if (currbird == null && birdQueue.isEmpty() && !pigList.isEmpty()) {
                         // pigList.removeAll(pigList);
-                        game.setScreen(new FailedScreen(game, level)); // Show the failed screen only if condition is
-                                                                       // still
-                        // true
+                        game.setScreen(new FailedScreen(game, level));
                     }
                 }
             }, 2f); // Delay of 0.1 seconds
@@ -458,32 +440,28 @@ public class LevelScreen implements Screen, ContactListener {
 
     // Helper method to draw a thick line as a rectangle
     private void drawThickLine(Vector2 start, Vector2 end, float thickness) {
-        Vector2 direction = end.cpy().sub(start); // Direction vector from start to end
-        float length = direction.len(); // Length of the line
-        float angle = direction.angleDeg(); // Angle of the line
+        Vector2 direction = end.cpy().sub(start);
+        float length = direction.len();
+        float angle = direction.angleDeg();
 
-        // Draw a rectangle as the thick line
         shapeRenderer.rect(start.x, start.y - thickness / 2, 0, thickness / 2, length, thickness, 1, 1, angle);
     }
 
     private void checkGroundCollision() {
-        // Bird has landed on the ground and has minimal vertical velocity (not in
-        // motion)
-        // body.
+
         if (currbird.body.getPosition().y <= GROUND_Y + 0.9f && Math.abs(currbird.body.getLinearVelocity().y) < 0.1f
                 || (currbird.health <= 0)) {
             vanishTimer += Gdx.graphics.getDeltaTime(); // Increment vanish timer
             // currbird.body.setAngularVelocity(0);
             currbird.body.setAngularDamping(2.0f);
-            // Bird has been still on the ground for enough time to vanish
+
             if (vanishTimer >= VANISH_TIME) {
-                // Start fading out the bird
-                currbird.birdAlpha -= Gdx.graphics.getDeltaTime() / VANISH_TIME; // Decrease alpha over time
+
+                currbird.birdAlpha -= Gdx.graphics.getDeltaTime() / VANISH_TIME;
 
                 if (currbird.birdAlpha <= 0f) {
-                    // Bird is completely transparent, mark for removal
-                    markBodyForRemoval(currbird.body, birdTexture); // Mark for removal
-                    currbird = null; // Set to null to stop rendering and avoid further updates
+                    markBodyForRemoval(currbird.body, birdTexture);
+                    currbird = null;
                     Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
 
                 }
@@ -498,11 +476,9 @@ public class LevelScreen implements Screen, ContactListener {
             currbird = null; // Set to null to stop rendering and avoid further updates
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
         } else {
-            // Reset vanish timer and opacity if airborne
-            // System.out.println(Math.abs(currbird.getLinearVelocity().y));
+
             vanishTimer = 0f;
-            currbird.birdAlpha = 1f; // Reset opacity
-            // currbird.setAngularVelocity(0); // Stop rotation if airborne
+            currbird.birdAlpha = 1f;
         }
     }
 
@@ -512,7 +488,7 @@ public class LevelScreen implements Screen, ContactListener {
             obj.vanishTimer += Gdx.graphics.getDeltaTime();
 
             if (obj.vanishTimer >= hittable_VANISH_TIME) {
-                obj.alpha -= Gdx.graphics.getDeltaTime() / hittable_VANISH_TIME; // Decrease alpha over time
+                obj.alpha -= Gdx.graphics.getDeltaTime() / hittable_VANISH_TIME;
                 if (obj.alpha <= 0f) {
                     markBodyForRemoval(obj.body, obj.texture);
                     if (obj instanceof Block) {
@@ -542,12 +518,11 @@ public class LevelScreen implements Screen, ContactListener {
                 }
 
             }
-            // System.out.println(obj);
+
             obj.health = 0;
         }
     }
 
-    // Helper method to check if the touch position is in the catapult area
     private boolean isTouchInCatapultArea(Vector2 touchPos) {
         float catapultX = 1.5f;
         float catapultY = GROUND_Y + 1f;
@@ -564,16 +539,14 @@ public class LevelScreen implements Screen, ContactListener {
 
         batch.begin();
         for (int i = 0; i < TRAJECTORY_POINTS; i++) {
-            // Calculate the x and y positions using the projectile motion formula
+
             float x = startPosition.x + initialVelocity.x * time;
             float y = startPosition.y + initialVelocity.y * time + 0.5f * gravity * time * time;
 
-            // Convert to pixel coordinates for rendering
-            float pixelX = x * 100 - 5; // Adjust to center the dot (5 is half of the dot size)
+            float pixelX = x * 100 - 5;
             float pixelY = y * 100 - 5;
 
-            // Draw a small circle or dot for each point in the trajectory
-            batch.draw(birdTexture, pixelX, pixelY, 8, 8); // Scale down the texture for trajectory points
+            batch.draw(birdTexture, pixelX, pixelY, 8, 8);
             time += TIME_STEP;
         }
         batch.end();
@@ -633,17 +606,14 @@ public class LevelScreen implements Screen, ContactListener {
         if ("ground".equals(bodyA.getUserData()) || "ground".equals(bodyB.getUserData()) && (currbird.isLaunched)) {
             Body otherBody = "ground".equals(bodyA.getUserData()) ? bodyB : bodyA;
 
-            // Check if the other body is a plank (you might need a similar user data or
-            // type check)
             if (otherBody.getUserData() instanceof Block) {
                 Block plank = (Block) otherBody.getUserData();
                 plank.body.setAngularDamping(0.075f);
 
                 Vector2 impactVelocity = plank.body.getLinearVelocity();
                 float speed = impactVelocity.len();
-                // System.out.println(speed);
-                // Calculate damage based on speed (adjust multiplier as needed)
-                int damage = (int) (speed * 2.5); // Example: 10 damage per unit of speed
+
+                int damage = (int) (speed * 2.5);
                 plank.takeDamage(damage, plank);
 
             }
@@ -656,8 +626,6 @@ public class LevelScreen implements Screen, ContactListener {
             handleBlockBlockCollision(blockA, blockB, contact);
         }
 
-        // PIG
-        // Bird-Pig collision
         if ((userDataA instanceof Bird && userDataB instanceof Pig) ||
                 (userDataA instanceof Pig && userDataB instanceof Bird)) {
             Bird bird = (userDataA instanceof Bird) ? (Bird) userDataA : (Bird) userDataB;
@@ -699,23 +667,17 @@ public class LevelScreen implements Screen, ContactListener {
 
     private void handleBirdBlockCollision(Bird bird, Block block) {
 
-        // Calculate the point of impact relative to the block's center
         Vector2 impactPoint = new Vector2();
         impactPoint.set(bird.body.getPosition()).sub(block.body.getPosition());
 
-        // Calculate the distance from the center of the block to the impact point (r)
         float distance = impactPoint.len();
-        // System.out.println(impactPoint);
-        // If the bird hits the block off-center, apply torque
+
         float torque = 1;
         if (distance > 0) {
-            // System.out.println("distance >0");
-            // Calculate the direction of the collision impact (velocity vector of the bird)
+
             Vector2 velocity = bird.body.getLinearVelocity().cpy();
 
-            // Apply torque proportional to the distance of impact and the bird's velocity
-            // The farther from the center, the more torque applied
-            torque = velocity.x * distance; // Simple torque calculation; can be modified to make it more
+            torque = velocity.x * distance;
             block.torque = torque;
             torque = (float) (torque * 0.8);
             if (impactPoint.y > 0) {
@@ -749,14 +711,11 @@ public class LevelScreen implements Screen, ContactListener {
         if (impulseStrength < 3) {
             return;
         }
-        // System.out.println(impulseStrength);
-        // Apply forces based on impact angle and impulse strength
+
         Vector2 impactDirection = relativeVelocity.nor().scl(impulseStrength);
         blockA.body.applyLinearImpulse(impactDirection, collisionPoint, true);
         blockB.body.applyLinearImpulse(impactDirection.scl(-1), collisionPoint, true);
 
-        // System.out.println(impulseStrength);
-        // Calculate angular velocity instead of torque for rotation
         float distanceA = collisionPoint.dst(blockA.body.getPosition());
         float distanceB = collisionPoint.dst(blockB.body.getPosition());
         float angularVelocityA = impulseStrength * distanceA * 0.1f; // Adjust 0.1f as needed for rotation sensitivity

@@ -52,21 +52,18 @@ public class LevelCleared implements com.badlogic.gdx.Screen {
 
     @Override
     public void render(float delta) {
-        // Gdx.gl.glClearColor(0, 0, 0, 0);
-        // Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        // level.update(delta); // Update the level's game logic
+        
         batch.begin();
         batch.draw(cleareddisplay, 550, 75);
         batch.end();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.BLACK);
-        // Define the rectangle coordinates and size
-        float rectX = 680; // X position of the rectangle
-        float rectY = 500; // Y position of the rectangle
-        float rectWidth = 300; // Width of the rectangle
-        float rectHeight = 100; // Height of the rectangle
+
+        float rectX = 680; 
+        float rectY = 500; 
+        float rectWidth = 300; 
+        float rectHeight = 100; 
 
         // Draw the black rectangle
         shapeRenderer.rect(rectX, rectY, rectWidth, rectHeight);
@@ -145,6 +142,5 @@ public class LevelCleared implements com.badlogic.gdx.Screen {
         cleareddisplay.getTexture().dispose();
     }
 
-    // Other Screen methods like resize, pause, etc., would go here
 
 }

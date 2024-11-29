@@ -31,8 +31,6 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
 
     @Override
     public void show() {
-        // camera = new OrthographicCamera();
-        // camera.setToOrtho(false, 1024, 768); // Match the window size
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch = new SpriteBatch();
         background = new Sprite(new Texture("b1.png"));
@@ -40,11 +38,7 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
         settingsicon = new Sprite(new Texture("settingsicon.png"));
         exiticon = new Sprite(new Texture("exitbutton.png"));
         title = new Sprite(new Texture("title.png"));
-        // title.setSize();
-        // background.setSize(1024, 768);
-
-        // Adjust the position and size to match your play button's location on the
-        // image
+     
         playButton = new Rectangle(-170, -130, 335, 170);
         settingsbutton = new Circle(-720, -380, 50);
         exitbutton = new Circle(720, -380, 45);
@@ -57,11 +51,8 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
 
     @Override
     public void render(float delta) {
-        // Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Arrow);
-        // Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // batch.setProjectionMatrix(camera.combined);
         batch.begin();
         background.draw(batch);
         batch.draw(playicon, 620, 330);
@@ -70,26 +61,23 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
         batch.draw(exiticon, 1470, 10);
         batch.end();
 
-        // Get the mouse position in world coordinates
         Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
         camera.unproject(mousePos);
 
-        // Check if the mouse is over the play button
         if (playButton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
-                game.setScreen(new SelectLevel(game, this)); // Ensure PlayScreen is properly implemented
+                game.setScreen(new SelectLevel(game, this)); 
             }
         } else if (settingsbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
-                game.setScreen(new Settings(game, this)); // Ensure PlayScreen is properly implemented
+                game.setScreen(new Settings(game, this)); 
             }
         } else if (exitbutton.contains(mousePos.x, mousePos.y)) {
             Gdx.graphics.setSystemCursor(com.badlogic.gdx.graphics.Cursor.SystemCursor.Hand);
             if (Gdx.input.isTouched()) {
-                // game.setScreen(new Settings(game)); // Ensure PlayScreen is properly
-                // implemented
+                // game.setScreen(new Settings(game)); 
                 Gdx.app.exit();
             }
         } else {
@@ -99,7 +87,6 @@ public class HomeScreen implements com.badlogic.gdx.Screen {
 
     @Override
     public void resize(int width, int height) {
-        // camera.setToOrtho(false, width, height);
     }
 
     @Override
