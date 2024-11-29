@@ -4,10 +4,7 @@ package com.github.angry_bird;
 // import com.badlogic.gdx.Screen;
 // import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Texture;
-// import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-// import com.badlogic.gdx.graphics.g2d.TextureRegion;
-// import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
+
 import com.badlogic.gdx.physics.box2d.*;
 // import com.badlogic.gdx.physics.box2d.joints.MouseJoint;
 // import com.badlogic.gdx.physics.box2d.joints.MouseJointDef;
