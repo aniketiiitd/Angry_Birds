@@ -1,8 +1,10 @@
 # Angry_Birds
 
-A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
+#### A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff). This project was generated using `Box2D` Library.
 
-This project was generated using `Box2D` Library.
+### Game play Demonstration Video: [Angry Birds GamePlay](https://drive.google.com/file/d/1YxeqszZc0i_HjIp4MTNZI0gfDwXUux1E/view?usp=drive_link)
+
+---
 
 ## Platforms
 
@@ -128,6 +130,7 @@ The `LevelScreen` class represents a playable level screen and ContactListener i
 The `ContactListener` interface in Box2D is used to handle collision events between bodies in the physics world. Below are the methods and their purposes:
 
 #### 1. `beginContact(Contact contact)`
+
 This method is called when two fixtures start to collide.
 
 - **Use:** Detect when a collision begins.
@@ -137,6 +140,7 @@ This method is called when two fixtures start to collide.
 ---
 
 #### 2. `endContact(Contact contact)`
+
 This method is called when two fixtures stop colliding.
 
 - **Use:** Detect when a collision ends.
@@ -146,6 +150,7 @@ This method is called when two fixtures stop colliding.
 ---
 
 #### 3. `preSolve(Contact contact, Manifold oldManifold)`
+
 This method is called before the collision response is calculated.
 
 - **Use:** Modify or disable the contact before the physics engine processes it.
@@ -156,6 +161,7 @@ This method is called before the collision response is calculated.
 ---
 
 #### 4. `postSolve(Contact contact, ContactImpulse impulse)`
+
 This method is called after the collision response has been calculated.
 
 - **Use:** Analyze the results of the collision, such as the applied impulse, for game logic or effects.
@@ -166,13 +172,14 @@ This method is called after the collision response has been calculated.
 ---
 
 ### Example Use Cases
+
 - **`beginContact`**: Trigger an event when a player touches an enemy or an item.
 - **`endContact`**: Stop applying a force when an object moves out of a zone.
 - **`preSolve`**: Prevent collisions under specific conditions, such as allowing certain objects to pass through each other.
 - **`postSolve`**: Apply visual effects (e.g., sparks or damage) based on the collision force.
+
 ---
 
-    
        loadingscreen.java
 
 Here’s how it functions:
@@ -297,15 +304,19 @@ This setup provides a clean and user-friendly settings screen, making it straigh
 ## Implemented Design Patterns
 
 ### 1. Observer Pattern:
-   - The ContactListener interface observes when the collision between bird, blocks and pigs take place.
+
+- The ContactListener interface observes when the collision between bird, blocks and pigs take place.
 
 ### 2. Factory Pattern:
-   - The Classes of Birds, Pigs and Blocks help create game objects with different colors, sizes, or abilities based on some parameters.
+
+- The Classes of Birds, Pigs and Blocks help create game objects with different colors, sizes, or abilities based on some parameters.
 
 ### 3. Singleton Pattern:
-   - The Main class creates a single instance of the Game for the entire game thus implementing singleton pattern.
+
+- The Main class creates a single instance of the Game for the entire game thus implementing singleton pattern.
 
 ---
+
 ### Sources:-
 
     1) https://fontmeme.com/angry-birds-font/
