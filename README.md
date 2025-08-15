@@ -33,8 +33,8 @@ Useful Gradle tasks and flags:
 
 ### Project Members:
 
-    1) Gopal Krishna Tewari (2023223)
-    2) Aniket Khandelwal (2023087)
+    1) Gopal Krishna Tewari
+    2) Aniket Khandelwal
 
 ### Contributions:
 
